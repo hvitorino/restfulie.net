@@ -102,7 +102,7 @@ namespace Restfulie.Server.Tests.Negotiation
         {
             var mediaType = acceptHeader.GetMediaType("*/*; q=0.5, application/atom+xml");
 
-            Assert.AreEqual(atom.Object.GetType().FullName, mediaType.GetType().FullName);
+            Assert.AreEqual(atom.Object, mediaType);
         }
 
         [Test]
