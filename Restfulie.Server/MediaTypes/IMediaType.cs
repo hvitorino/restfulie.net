@@ -25,7 +25,7 @@ namespace Restfulie.Server.MediaTypes
 
 		public override bool Equals(object obj)
 		{
-			return GetType() == obj.GetType();
+			return GetType().FullName == obj.GetType().FullName;
 		}
 	}
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Web.Script.Serialization;
+﻿using System.IO;
+using Newtonsoft.Json;
 
 namespace Restfulie.Server.Marshalling.Serializers.Json
 {
@@ -7,9 +7,17 @@ namespace Restfulie.Server.Marshalling.Serializers.Json
     {
         public string Serialize(object resource)
         {
-            var serializer = new JavaScriptSerializer();
+            using (var jsonWriter = new StringWriter())
+            {
+                var serializer = new Newtonsoft.Json.JsonSerializer
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                };
 
-            return serializer.Serialize(resource);
+                serializer.Serialize(new JsonTextWriter(jsonWriter), resource);
+
+                return jsonWriter.GetStringBuilder().ToString();
+            }
         }
     }
 }
