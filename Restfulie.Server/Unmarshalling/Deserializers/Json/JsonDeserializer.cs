@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Web.Script.Serialization;
-using System.Reflection;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Restfulie.Server.Unmarshalling.Deserializers.Json
 {
@@ -8,14 +8,12 @@ namespace Restfulie.Server.Unmarshalling.Deserializers.Json
     {
         public object Deserialize(string content, Type objectType)
         {
-            var serializer = new JavaScriptSerializer();
+            using (var jsonReader = new StringReader(content))
+            {
+                var deserializer = new JsonSerializer();
 
-            // How to use reflection to call generic method
-            // http://stackoverflow.com/questions/232535/how-to-use-reflection-to-call-generic-method
-            MethodInfo method = typeof(JavaScriptSerializer).GetMethod("Deserialize");
-            MethodInfo generic = method.MakeGenericMethod(objectType);
-
-            return generic.Invoke(serializer, new object[] { content });
+                return deserializer.Deserialize(new JsonTextReader(jsonReader), objectType);
+            }
         }
     }
 }
