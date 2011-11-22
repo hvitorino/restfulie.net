@@ -145,7 +145,6 @@
     <Compile Include="Results\Chooser\IResultChooser.cs" />
     <Compile Include="Results\Decorators\Content.cs" />
     <Compile Include="Results\Decorators\ContentType.cs" />
-    <Compile Include="Results\Decorators\FileAttachment.cs" />
     <Compile Include="Results\Decorators\ResultDecorator.cs" />
     <Compile Include="Results\Decorators\Location.cs" />
     <Compile Include="Results\Decorators\StatusCode.cs" />
