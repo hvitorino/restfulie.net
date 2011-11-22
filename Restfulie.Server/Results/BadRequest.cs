@@ -5,6 +5,9 @@ namespace Restfulie.Server.Results
 {
     public class BadRequest : RestfulieResult
     {
+        public BadRequest() { }
+        public BadRequest(object model) : base(model) { }
+
         public override ResultDecorator GetDecorators()
         {
             return new StatusCode((int)HttpStatusCode.BadRequest);
