@@ -28,5 +28,17 @@ namespace Restfulie.Server.Tests.Results
         {
             Assert.That(result.GetDecorators().Contains(typeof(StatusCode)));
         }
+
+        [Test]
+        public void ShouldSetContent()
+        {
+            Assert.That(result.GetDecorators().Contains(typeof(Content)));
+        }
+
+        [Test]
+        public void ShouldSetContentType()
+        {
+            Assert.That(result.GetDecorators().Contains(typeof(ContentType)));
+        }
     }
 }
